@@ -1,0 +1,18 @@
+{
+  "name": "deckard",
+  "main": "./lib/deckard",
+  "version": "0.2.0",
+  "description": "Connector for Deckard.ai coding assistant",
+  "keywords": [
+  ],
+  "activationCommands": {
+    "atom-workspace": "deckard:toggle"
+  },
+  "repository": "https://github.com/deckardai/atom-deckard",
+  "license": "MIT",
+  "engines": {
+    "atom": ">=1.0.0 <2.0.0"
+  },
+  "dependencies": {
+  }
+}
