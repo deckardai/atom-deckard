@@ -5,9 +5,7 @@
   "description": "Connector for Deckard.ai coding assistant",
   "keywords": [
   ],
-  "activationCommands": {
-    "atom-workspace": "deckard:toggle"
-  },
+  "activationCommands": {},
   "repository": "https://github.com/deckardai/atom-deckard",
   "license": "MIT",
   "engines": {
