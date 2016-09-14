@@ -24,6 +24,7 @@ module.exports = {
                     path: editor.getPath()
                     lineno: position.row
                     charno: position.column
+                    editor: 'atom'
                 }
                 console.log body
                 request {
