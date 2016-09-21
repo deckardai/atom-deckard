@@ -8,9 +8,10 @@ minPauseMs = 500
 
 lastTimeMs = 0
 
-module.exports = {
+module.exports = Clicks = {
     init: ->
         atom.workspace.observeTextEditors (editor) ->
+
             editor.onDidChangeSelectionRange (ev) ->
                 position = ev.newBufferRange.start
 
@@ -27,7 +28,7 @@ module.exports = {
                     .getTextInBufferRange(ev.newBufferRange)
                     .substr(0, maxLength)
 
-                body = {
+                Clicks.post('event', {
                     path: editor.getPath()
                     lineno: position.row
                     charno: position.column
@@ -36,16 +37,28 @@ module.exports = {
                         charno: end.column
                     text: text
                     editor: 'atom'
-                }
+                })
 
-                request {
-                    url: 'http://localhost:3325/event'
-                    method: 'post'
-                    json: true
-                    body: body
-                }
-                .catch (err) ->
-                    console.error err
+
+            editor.onDidSave (ev) ->
+                content = editor.getText()
+                if content.length > 1000 * 1000
+                    content = null
+                Clicks.post("change", {
+                    fullPath: editor.getPath(),
+                    content: content,
+                })
+
+
+    post: (path, body) ->
+        request {
+            url: 'http://localhost:3325/' + path
+            method: 'post'
+            json: true
+            body: body
+        }
+        .catch (err) ->
+            console.error err.toString()
 }
 
 # Alternative: respond to all clicks
