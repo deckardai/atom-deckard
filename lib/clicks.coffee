@@ -37,7 +37,7 @@ module.exports = {
                     text: text
                     editor: 'atom'
                 }
-                console.log body
+
                 request {
                     url: 'http://localhost:3325/event'
                     method: 'post'
