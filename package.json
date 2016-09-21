@@ -1,7 +1,7 @@
 {
   "name": "deckard",
   "main": "./lib/deckard",
-  "version": "0.2.8",
+  "version": "0.2.9",
   "description": "Connector for Deckard.ai coding assistant",
   "keywords": [],
   "activationCommands": {},
