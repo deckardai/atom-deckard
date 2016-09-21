@@ -4,7 +4,6 @@ Request = require 'request'
 exports.request = (params) ->
     new Promise (done, fail) ->
         Request params, (err, resp, data) ->
-            console.log err, resp, data
             if err?
                 fail err
             else if resp.statusCode != 200
