@@ -3,6 +3,9 @@
 {request} = require './utils'
 
 
+maxLength = 1000
+minPauseMs = 500
+
 lastTimeMs = 0
 
 module.exports = {
@@ -16,14 +19,22 @@ module.exports = {
                     return  # Not a selection
 
                 nowMs = new Date().getTime()
-                if nowMs < lastTimeMs + 1000
+                if nowMs < lastTimeMs + minPauseMs
                     return  # Already updating
                 lastTimeMs = nowMs
+
+                text = editor
+                    .getTextInBufferRange(ev.newBufferRange)
+                    .substr(0, maxLength)
 
                 body = {
                     path: editor.getPath()
                     lineno: position.row
                     charno: position.column
+                    end:
+                        lineno: end.row
+                        charno: end.column
+                    text: text
                     editor: 'atom'
                 }
                 console.log body
